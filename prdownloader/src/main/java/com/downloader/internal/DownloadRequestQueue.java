@@ -65,6 +65,10 @@ public class DownloadRequestQueue {
         }
     }
 
+    public DownloadRequest getDownloadRequest(int downloadId){
+        return currentRequestMap.get(downloadId);
+    }
+
     public void resume(int downloadId) {
         DownloadRequest request = currentRequestMap.get(downloadId);
         if (request != null) {
