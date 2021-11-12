@@ -23,10 +23,13 @@ package com.downloader;
 import android.content.Context;
 
 import com.downloader.core.Core;
+import com.downloader.database.DownloadModel;
 import com.downloader.internal.ComponentHolder;
 import com.downloader.internal.DownloadRequestQueue;
 import com.downloader.request.DownloadRequestBuilder;
 import com.downloader.utils.Utils;
+
+import java.io.File;
 
 /**
  * PRDownloader entry point.
@@ -124,6 +127,17 @@ public class PRDownloader {
      */
     public static Status getStatus(int downloadId) {
         return DownloadRequestQueue.getInstance().getStatus(downloadId);
+    }
+
+    public static Boolean isDownloadComplete(String url, String dirPath, String fileName){
+        int id = com.downloader.utils.Utils.getUniqueId(url,dirPath,fileName);
+        DownloadModel mode =  ComponentHolder.getInstance().getDbHelper().find(id);
+        if(mode!=null){
+            String f =  mode.getDirPath()+"/"+mode.getFileName();
+            File file = new File(f);
+            return  file.exists() && mode.getTotalBytes() == mode.getDownloadedBytes();
+        }
+        return false;
     }
 
     /**

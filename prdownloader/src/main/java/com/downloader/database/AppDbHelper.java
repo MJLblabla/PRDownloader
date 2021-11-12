@@ -117,12 +117,12 @@ public class AppDbHelper implements DbHelper {
 
     @Override
     public void remove(int id) {
-        try {
-            db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " +
-                    DownloadModel.ID + " = " + id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " +
+//                    DownloadModel.ID + " = " + id);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
