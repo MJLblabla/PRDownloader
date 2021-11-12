@@ -230,6 +230,10 @@ public class DownloadRequest {
         return downloadId;
     }
 
+    public OnDownloadListener getDownloadListener(){
+        return onDownloadListener;
+    }
+
     public Response executeSync() {
         downloadId = Utils.getUniqueId(url, dirPath, fileName);
         return new SynchronousCall(this).execute();
